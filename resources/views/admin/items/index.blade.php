@@ -25,10 +25,12 @@
                         <td>
                             <a class="btn btn-primary" href="{{ route('admin.items.show', ['item' => $item->id]) }}"><i
                                     class="fa-solid fa-eye"></i></a>
+                            {{-- Form delete incluso --}}
                             @include('admin.partials.formdelete', [
                                 'route' => route('admin.items.destroy', ['item' => $item->id]),
                                 'message' => "vuoi veramente eliminare $item->tilte",
                             ])
+
                             <a class="btn btn-warning" href="{{ route('admin.items.edit', ['item' => $item->id]) }}"><i
                                     class="fa-solid fa-pencil"></i></a>
                         </td>

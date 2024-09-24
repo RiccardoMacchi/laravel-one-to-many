@@ -11,15 +11,30 @@
         </form>
         <ul class="list-group list-group-flush">
             @foreach ($types as $type)
-                <li class="d-flex justify-content-between list-group-item">{{ $type->name }}
-                    <span>
+                <li class="d-flex justify-content-between list-group-item">
+                    <form id="update-{{ $type->id }}" action="{{ route('admin.types.update', $type) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <input class="input-edit" type="text" name="name" value="{{ $type->name }}">
+                    </form>
+                    <div>
+                        <button type="submit" class="btn btn-warning"
+                            onclick="submitUpdate({{ $type->id }})">MODIFICA</button>
                         @include('admin.partials.formdelete', [
                             'route' => route('admin.types.destroy', $type),
                             'message' => "vuoi veramente eliminare $type->name",
                         ])
-                    </span>
+                    </div>
                 </li>
             @endforeach
         </ul>
     </div>
+    {{-- Funzione per associazione btn modifica con form tramite id --}}
+    <script>
+        function submitUpdate(id) {
+            let form = document.getElementById(`update-${id}`)
+            // Effettuiamo il submit sul bottone
+            form.submit();
+        }
+    </script>
 @endsection
