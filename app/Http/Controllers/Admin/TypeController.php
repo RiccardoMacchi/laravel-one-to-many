@@ -40,7 +40,7 @@ class TypeController extends Controller
         $new_type->slug = Helper::generateSlug($new_type->name, Type::class);
         $new_type->save();
 
-        return redirect()->route('admin.types.index')->with('success', 'Tipo creato con successo!');
+        return redirect()->route('admin.types.index')->with('message', 'Tipo creato con successo!');
     }
 
     /**
@@ -70,8 +70,10 @@ class TypeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Type $type)
     {
-        //
+        $type->delete();
+        return redirect()->route('admin.types.index')->with('message', 'Tipo eliminato con successo!');
+
     }
 }

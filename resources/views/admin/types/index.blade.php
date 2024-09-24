@@ -11,7 +11,14 @@
         </form>
         <ul class="list-group list-group-flush">
             @foreach ($types as $type)
-                <li class="list-group-item">{{ $type->name }}</li>
+                <li class="d-flex justify-content-between list-group-item">{{ $type->name }}
+                    <span>
+                        @include('admin.partials.formdelete', [
+                            'route' => route('admin.types.destroy', $type),
+                            'message' => "vuoi veramente eliminare $type->name",
+                        ])
+                    </span>
+                </li>
             @endforeach
         </ul>
     </div>

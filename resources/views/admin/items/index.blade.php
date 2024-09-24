@@ -25,14 +25,10 @@
                         <td>
                             <a class="btn btn-primary" href="{{ route('admin.items.show', ['item' => $item->id]) }}"><i
                                     class="fa-solid fa-eye"></i></a>
-                            <form class="d-inline" action="{{ route('admin.items.destroy', ['item' => $item->id]) }}"
-                                method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger"
-                                    onsubmit="return confirm('Vuoi davvero eliminare {{ $item->title }}?')"><i
-                                        class="fa-solid fa-trash"></i></button>
-                            </form>
+                            @include('admin.partials.formdelete', [
+                                'route' => route('admin.items.destroy', ['item' => $item->id]),
+                                'message' => "vuoi veramente eliminare $item->tilte",
+                            ])
                             <a class="btn btn-warning" href="{{ route('admin.items.edit', ['item' => $item->id]) }}"><i
                                     class="fa-solid fa-pencil"></i></a>
                         </td>
