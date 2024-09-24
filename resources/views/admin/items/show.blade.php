@@ -12,7 +12,7 @@
                 <h4 class="card-title">TITOLO: {{ $item->title }}</h4>
                 <h6>TIPO: {{ $item->type ? $item->type->name : 'NESSUN TIPO' }}</h6>
                 <p class="card-text">{{ $item->description }}</p>
-                <a href="{{ $item->git_link }}" class="btn btn-primary">Vai a GitHub</a>
+                <a href="{{ $item->git_link }}" target="_blank" class="btn btn-primary">Vai a GitHub</a>
             </div>
             <div class="card-footer text-muted">
                 {{ $item->date }}

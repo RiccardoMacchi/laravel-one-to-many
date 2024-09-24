@@ -1,0 +1,18 @@
+@extends('layouts.app')
+
+@section('content')
+    <div class="container">
+        <h1>{{ $title }}</h1>
+        <form action="{{ route('admin.types.store') }}" method="POST">
+            @csrf
+            <label for="name">INSERISCI UN NUOVO TIPO:</label>
+            <input type="text" name="name" placeholder="Inserisci un nuovo tipo">
+            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i></button>
+        </form>
+        <ul class="list-group list-group-flush">
+            @foreach ($types as $type)
+                <li class="list-group-item">{{ $type->name }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endsection
