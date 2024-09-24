@@ -27,6 +27,7 @@ class ItemRequest extends FormRequest
             'lenguages' => ['required', 'string', 'min:2', 'max:255'],
             'date' => ['required', 'date'],
             'description' => ['required', 'string','min:10'],
+            'type_id' => ['required']
         ];
     }
 
@@ -55,6 +56,7 @@ class ItemRequest extends FormRequest
             'description.string' => 'La descrizione deve essere una stringa.',
             'description.min' => 'La descrizione deve avere almeno 10 carattere.',
 
+            'type_id.required' => 'Il tipo è obbligatorio',
         ];
     }
 }

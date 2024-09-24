@@ -32,6 +32,9 @@
                         </option>
                     @endforeach
                 </select>
+                @error('type_id')
+                    <small>{{ $message }}</small>
+                @enderror
             </div>
 
             <div class="form-group">
