@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Item;
+use App\Models\Type;
 use App\Functions\Helper;
 use App\Http\Requests\ItemRequest;
 
@@ -26,7 +27,8 @@ class ItemController extends Controller
     public function create()
     {
         $title = 'Aggiungi un nuovo lavoro';
-        return view('admin.items.create', compact('title'));
+        $types = Type::all();
+        return view('admin.items.create', compact('title','types'));
     }
 
     /**
@@ -59,8 +61,9 @@ class ItemController extends Controller
     public function edit(string $id)
     {
         $item = Item::find($id);
+        $types = Type::all();
         $title = 'Stai modificando ' . $item->title;
-        return view('admin.items.edit', compact('item','title'));
+        return view('admin.items.edit', compact('item','title','types'));
     }
 
     /**

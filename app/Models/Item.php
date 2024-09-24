@@ -17,7 +17,8 @@ class Item extends Model
         'lenguages',
         'date',
         'description',
-        'slug'
+        'slug',
+        'type_id'
     ];
 
     public function type(){

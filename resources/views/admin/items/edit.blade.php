@@ -20,6 +20,20 @@
                     <small>{{ $message }}</small>
                 @enderror
             </div>
+
+            <div class="form-group">
+                <label for="type_id">TIPO:</label>
+                <select class="form-select" name="type_id" id="types">
+                    <option value="">Scegli un'opzione</option>
+                    @foreach ($types as $type)
+                        <option value="{{ $type->id }}" {{-- Condizione per lasciare selzionato --}}
+                            @if (old('type_id', $item->type_id) == $type->id) selected @endif>
+                            {{ $type->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
             <div class="form-group">
                 <label for="lenguages">Linguaggi Usati:</label>
                 <input type="text" class="form-control" id="lenguages" name="lenguages"

@@ -9,7 +9,8 @@
                 {{ $item->lenguages }}
             </div>
             <div class="card-body">
-                <h5 class="card-title">{{ $item->title }}</h5>
+                <h4 class="card-title">TITOLO: {{ $item->title }}</h4>
+                <h6>TIPO: {{ $item->type ? $item->type->name : 'NESSUN TIPO' }}</h6>
                 <p class="card-text">{{ $item->description }}</p>
                 <a href="{{ $item->git_link }}" class="btn btn-primary">Vai a GitHub</a>
             </div>
