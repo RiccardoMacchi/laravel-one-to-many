@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Type;
+
 class Item extends Model
 {
     use HasFactory;
@@ -17,4 +19,8 @@ class Item extends Model
         'description',
         'slug'
     ];
+
+    public function type(){
+        return $this->belongsTo(Type::class);
+    }
 }

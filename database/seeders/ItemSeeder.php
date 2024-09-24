@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Item;
 use App\Functions\Helper;
+use App\Models\Type;
 
 use Faker\Factory as Faker;
 
@@ -27,6 +28,8 @@ class ItemSeeder extends Seeder
             $new_item->description = $faker->paragraph();
             $new_item->slug = Helper::generateSlug($new_item->title, Item::class);
             // dump($new_item);
+            // Estraiamo randomaticamente un elemento dalla tabella types e prendiamo il primo elemento e di quello l'ID
+            $new_item->type_id = Type::inRandomOrder()->first()->id;
             $new_item->save();
         }
     }
