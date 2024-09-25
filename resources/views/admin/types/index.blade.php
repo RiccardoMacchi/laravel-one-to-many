@@ -14,7 +14,7 @@
             </div>
         @endif
 
-        <ul class="list-group list-group-flush">
+        <ul class="list-group list-group-flush my_list">
             @foreach ($types as $type)
                 <li class="d-flex justify-content-between list-group-item">
                     <form id="update-{{ $type->id }}" action="{{ route('admin.types.update', $type) }}" method="POST">
@@ -27,7 +27,7 @@
                                 class="fa-solid fa-pencil"></i></button>
                         @include('admin.partials.formdelete', [
                             'route' => route('admin.types.destroy', $type),
-                            'message' => "vuoi veramente eliminare $type->name",
+                            'title' => "vuoi veramente eliminare $type->name",
                         ])
                     </div>
                 </li>

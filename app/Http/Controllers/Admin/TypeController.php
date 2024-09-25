@@ -34,13 +34,18 @@ class TypeController extends Controller
      */
     public function store(TypeRequest $request)
     {
-        $data = $request->all();
-        $new_type = new Type();
-        $new_type->fill($data);
-        $new_type->slug = Helper::generateSlug($new_type->name, Type::class);
-        $new_type->save();
+        $exists = Type::where('name', $request->name)->first();
+        if($exists == null){
+            $data = $request->all();
+            $new_type = new Type();
+            $new_type->fill($data);
+            $new_type->slug = Helper::generateSlug($new_type->name, Type::class);
+            $new_type->save();
+            return redirect()->route('admin.types.index')->with('message', 'Tipo creato con successo!');
+        } else{
+            return redirect()->route('admin.types.index')->with('message', 'Categoria già presente!');
+        }
 
-        return redirect()->route('admin.types.index')->with('message', 'Tipo creato con successo!');
     }
 
     /**
@@ -64,11 +69,19 @@ class TypeController extends Controller
      */
     public function update(TypeRequest $request, Type $type)
     {
-        $data = $request->all();
-        $data['slug'] = Helper::generateSlug($data['name'], Type::class);
-        $type->update($data);
+        // salviamo l'esistenza o meno del dato se null non esiste
+        $exists = Type::where('name', $request->name)->first();
+        if($exists == null){
 
-        return redirect()->route('admin.types.index')->with('message', 'Tipo modificato con successo!');
+            $data = $request->all();
+            $data['slug'] = Helper::generateSlug($data['name'], Type::class);
+            $type->update($data);
+
+            return redirect()->route('admin.types.index')->with('message', 'Tipo modificato con successo!');
+        } else{
+            return redirect()->route('admin.types.index')->with('message', 'Categoria già presente!');
+
+        }
     }
 
     /**
